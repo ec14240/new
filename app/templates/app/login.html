@@ -1,0 +1,30 @@
+{% extends "app/main.html" %}
+{% block content %}
+<main class="page-wrap">
+    <div class="container">
+        <h4 class="text-left">Login</h4>
+                <form class="form" action="/login/" method="POST">
+                    {% csrf_token %}
+                    {% if error %}
+                    <div class="form-group alert alert-danger">
+                        <p>{{error}}</p>
+                    </div>
+                    {% endif %}
+                    <div class="form-group">
+                        <div class="input-group">Email
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">Password
+                            {{ form.password }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-primary" name="commit" tabindex="3" type="submit" value="Login"/>
+                        <a href="/signup" class="btn btn-primary">Register</a>
+                    </div>
+                </form>
+        </div>
+</main>
+{% endblock %}

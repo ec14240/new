@@ -1,0 +1,51 @@
+{% extends "app/main.html" %}
+{% block content %}
+    {% verbatim %}
+<div ng-controller="shopController as shop" ng-init="init()" class="ng-cloak">
+        <!-- <div class="breadcrumbs">
+            <h5> {{ getFilter() }}</h5> 
+        </div> -->
+         <!-- <div class="header bg-primary text-center">
+            <h1 class="text-white">S H O P</h1>
+            <h2> {{ categorySlug || 'all ' + catalogSlug }}</h2>
+        </div>-->
+        <base href="/shop/" />
+        <!-- Items -->
+        <div class="col-sm-4 col-md-3 col-lg-3">
+            <div class="sidebar">
+                <!-- Showing Category panel -->
+                <h4 class="text-center">Categories</h4>
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="form-group text-center" ng-repeat="category in categories | orderBy:'id'">
+                            <input type="button" class="btn btn-default btn-block" ng-click="setCategory(category.slug)" ng-value="catalogs ? category.name + ' | ' + category.catalog.name : category.name"/>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+        <div>
+            <div class="col-sm-8 col-md-9 col-lg-9">
+                <div ng-repeat="product in products">
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                        <div class="product text-center">
+                            <a ng-href="/shop/{{ product.category.catalog.slug }}/{{ product.slug }}/">
+                                <img src="/{{product.photo }}" class="img-responsive img-rounded center-block" style="max-height: 250px;">
+                            </a>
+                            <div class="details">
+                                <div class="name">
+                                    <p>{{ product.name }}</p>
+                                </div>
+                                <div class="price">
+                                    <p>£{{ product.price }}</p>
+                                </div>
+                                <input type="button" class="btn btn-primary" value="Add To Basket" ng-click="addProduct(product.id)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+    </div>
+{% endverbatim %}
+{% endblock %}
